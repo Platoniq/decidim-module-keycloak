@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email = ["francisco.bolivar@nazaries.com"]
   s.license = "AGPL-3.0"
   s.homepage = "https://github.com/decidim/decidim-module-keycloak"
-  s.required_ruby_version = ">= 2.7"
+  s.required_ruby_version = ">= 3.3"
 
   s.name = "decidim-keycloak"
   s.summary = "A decidim keycloak module"
@@ -22,4 +22,5 @@ Gem::Specification.new do |s|
   s.add_dependency "omniauth-keycloak", "~> 1.5"
 
   s.add_development_dependency "decidim-dev", Decidim::Keycloak::COMPAT_DECIDIM_VERSION
+  s.metadata["rubygems_mfa_required"] = "true"
 end
