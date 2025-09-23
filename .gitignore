@@ -26,3 +26,7 @@ development_app
 node_modules/
 npm_debug.log
 .rubocop-*
+
+ai/*
+CLAUDE.md
+.claude/*

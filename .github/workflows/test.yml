@@ -7,15 +7,15 @@ on:
   pull_request:
 
 env:
-  RUBY_VERSION: 2.7.6
+  RUBY_VERSION: 3.3.4
 
 jobs:
   test-report:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
 
     services:
       postgres:
-        image: postgres:11
+        image: postgres:14
         ports: ["5432:5432"]
         options: >-
           --health-cmd pg_isready
