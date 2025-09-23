@@ -3,8 +3,7 @@
 describe OmniAuth::Strategies::KeycloakOpenId do
   subject do
     described_class.new({}, client_id, client_secret, client_options: client_options).tap do |strategy|
-      allow(strategy).to receive(:request).and_return(request)
-      allow(strategy).to receive(:session).and_return([])
+      allow(strategy).to receive_messages(request: request, session: [])
     end
   end
 
