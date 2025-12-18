@@ -10,7 +10,7 @@ describe OmniAuth::Strategies::KeycloakOpenId do
 
   let(:client_id) { "Example-Client" }
   let(:client_secret) { "Example-Secret" }
-  let(:client_options) { { site: "https://fake.keycloakopenid.site", realm: "example-realm" } }
+  let(:client_options) { { site: "https://fake.keycloakopenid.site", realm: "example-realm", redirect_uri: "https://example.com/users/auth/keycloakopenid/callback" } }
   let(:request) { double("Request", params: {}, cookies: {}, env: {}, scheme: "https", url: "") }
 
   let(:nickname) { Faker::Internet.username(specifier: 5..10, separators: []) }
@@ -44,6 +44,10 @@ describe OmniAuth::Strategies::KeycloakOpenId do
 
     it "has correct realm" do
       expect(subject.options.client_options.realm).to eq(client_options[:realm])
+    end
+
+    it "has correct redirect_uri" do
+      expect(subject.options.client_options.redirect_uri).to eq(client_options[:redirect_uri])
     end
   end
 
