@@ -15,12 +15,13 @@ module Decidim
         app.config.middleware.use OmniAuth::Builder do
           provider :keycloak_openid, setup: lambda { |env|
             request = Rack::Request.new(env)
+            callback_uri = Addressable::URI.parse(env["omniauth.strategy"].callback_url).omit(:query)
             organization = Decidim::Organization.find_by(host: request.host)
             config = organization.enabled_omniauth_providers[:keycloakopenid]
 
             env["omniauth.strategy"].options[:client_id] = config[:client_id]
             env["omniauth.strategy"].options[:client_secret] = config[:client_secret]
-            env["omniauth.strategy"].options[:client_options] = { site: config[:site], realm: config[:realm] }
+            env["omniauth.strategy"].options[:client_options] = { site: config[:site], realm: config[:realm], redirect_uri: callback_uri.to_s }
           }
         end
       end
